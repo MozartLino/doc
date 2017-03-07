@@ -4,7 +4,7 @@ This document has as a main objective to explain how to integrate different doma
 We are using OAuth authorization framework enables a third-party application to obtain access.
 
 
-## What is OAuth? ##
+### What is OAuth? ###
 
 OAuth is an open protocol to allow secure authorization in a simple and standard method from web, mobile and desktop applications. As an application developer, services that provide HTTP APIs supporting OAuth, let you access parts of their service on behalf of your users. For example, when accessing a social network site, if your user gives you permission to access his account, you might be able to import pictures, friends lists, or contact information to your application. 
 
@@ -25,10 +25,28 @@ Below contains definitions to fundamental protocol concepts referenced throughou
 
 
 
+### OAuth1.0a ###
+
+OAuth1.0a provides a method to access a protected resource at the provider, on behalf of the resource owner (the user). This process consists of the following steps:
+
+1. The client obtains an unauthorized `request token`.
+2. The client redirects the user to a login dialog at the provider.
+3. The user authorizes the `request token`, associating it with their account.
+4. The provider redirects the user back to the client.
+5. The client exchanges the `request token` for an `access token`.
+6. The `access token` allows the client to access a protected resource at the provider, on behalf of the user.
 
 
-```
-bundle exec rake sunspot:solr:reindex
-```
+### How does it work? ###
+#### DeepLink - SkyOnline to third-party ####
 
-`bundle exec bin/resque work -c ./.resque`
+There is a case that the client is already logged in to SkyOnline and wants to be redirected to the movie directly from the third-party site.
+In this case, OAuth will start from step 4(four), where Provider(SkyOnline ) will redirect the user directly to the Client(third-party site) already with the necessary credentials to automatically authentication.
+For the Provider to redirect the user to the right place a callback url is required to be sent the credentials that will be validated by the Client. That url is what we need to receive
+
+ex: ```https://auth.third-party.tv/sky/callback```
+
+For the flow of OAuth to work, it is necessary for the user to be logged in SkyOnline and has permission to view the client’s contents. Given these conditions the user may be redirected to access the client’s contents.
+When the user click in watch movie, the Provider will to redirect the url above with the parameters.
+
+The Client will to validate the request token and redirect the user for the content
