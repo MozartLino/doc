@@ -36,7 +36,7 @@ OAuth1.0a provides a method to access a protected resource at the provider, on b
 5. The client exchanges the `request token` for an `access token`.
 6. The `access token` allows the client to access a protected resource at the provider, on behalf of the user.
 
-![alt text](flow.png "Description goes here")
+![alt text](flow.png)
 
 ### How does it work? ###
 #### DeepLink - SkyOnline to third-party ####
