@@ -1,7 +1,7 @@
 ## Documentation ##
 
 This document has as a main objective to explain how to integrate different domains, the Single Sign-on, which is defined as a single point of entry, you only need to authenticate once. This allows automatic access to multiple channels without the need to enter your login and password on each system, which provides more security to your authentication data.
-We are using OAuth authorization framework enables a third-party application to obtain access.
+We are using OAuth authorization framework enables partner application to obtain access.
 
 
 ### What is OAuth? ###
@@ -39,13 +39,13 @@ OAuth1.0a provides a method to access a protected resource at the provider, on b
 ![alt text](flow.png)
 
 ### How does it work? ###
-#### DeepLink - SkyOnline to third-party ####
+#### DeepLink - SkyOnline to partner ####
 
-There is a case that the client is already logged in to SkyOnline and wants to be redirected to the movie directly from the third-party site.
-In this case, OAuth will start from step 4(four), where Provider(SkyOnline ) will redirect the user directly to the Client(third-party site) already with the necessary credentials to automatically authentication.
+There is a case that the client is already logged in to SkyOnline and wants to be redirected to the movie directly from the partner site.
+In this case, OAuth will start from step 4(four), where Provider(SkyOnline ) will redirect the user directly to the Client(partner site) already with the necessary credentials to automatically authentication.
 For the Provider to redirect the user to the right place a callback url is required to be sent the credentials that will be validated by the Client. That url is what we need to receive
 
-ex: ```https://auth.third-party.tv/sky/callback```
+ex: ```https://auth.partner.tv/sky/callback```
 
 For the flow of OAuth to work, it is necessary for the user to be logged in SkyOnline and has permission to view the client’s contents. Given these conditions the user may be redirected to access the client’s contents.
 When the user click in watch movie, the Provider will to redirect the url above with the parameters.
